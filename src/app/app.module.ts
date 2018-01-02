@@ -1,8 +1,13 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ChartModule } from 'angular-highcharts';
+import { ChartModule, HIGHCHARTS_MODULES } from 'angular-highcharts';
+import more from 'highcharts/highcharts-more.src';
 
 import { AppComponent } from './app.component';
+
+export function highchartsModules() {
+  return [more];
+}
 
 @NgModule({
   declarations: [
@@ -12,7 +17,9 @@ import { AppComponent } from './app.component';
     BrowserModule,
     ChartModule
   ],
-  providers: [],
+  providers: [
+    { provide: HIGHCHARTS_MODULES, useFactory: highchartsModules }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
